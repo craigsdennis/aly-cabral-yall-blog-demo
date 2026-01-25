@@ -5,6 +5,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
 
 type Props = CollectionEntry<'blog'>['data'];
 
@@ -13,44 +14,208 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} />
+		<BaseHead title={`${title} | ${SITE_TITLE}`} description={description} />
 		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
+			article {
+				padding-bottom: var(--space-2xl);
 			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
+			
+			.hero-section {
+				position: relative;
+				padding: var(--space-2xl) var(--space-lg) var(--space-xl);
 				text-align: center;
-				line-height: 1;
 			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
+			
+			.hero-section::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 100%;
+				height: 100%;
+				background: radial-gradient(ellipse at top center, rgba(191, 87, 0, 0.06) 0%, transparent 60%);
+				pointer-events: none;
 			}
+			
+			.article-meta {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: var(--space-md);
+				margin-bottom: var(--space-md);
+				opacity: 0;
+				animation: fadeIn 0.5s ease 0.1s forwards;
+			}
+			
 			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
+				font-size: 0.95rem;
+				color: var(--text-secondary);
 			}
-			.last-updated-on {
+			
+			.updated {
+				font-size: 0.875rem;
+				color: var(--text-secondary);
 				font-style: italic;
+			}
+			
+			.article-title {
+				font-size: clamp(2rem, 5vw, 3.5rem);
+				max-width: 800px;
+				margin: 0 auto var(--space-md);
+				line-height: 1.15;
+				opacity: 0;
+				animation: fadeIn 0.5s ease 0.2s forwards;
+			}
+			
+			.article-description {
+				font-size: 1.25rem;
+				color: var(--text-secondary);
+				max-width: 650px;
+				margin: 0 auto;
+				line-height: 1.6;
+				opacity: 0;
+				animation: fadeIn 0.5s ease 0.3s forwards;
+			}
+			
+			.hero-image {
+				max-width: 1000px;
+				margin: var(--space-xl) auto 0;
+				padding: 0 var(--space-lg);
+				opacity: 0;
+				animation: fadeIn 0.6s ease 0.4s forwards;
+			}
+			
+			.hero-image img {
+				width: 100%;
+				height: auto;
+				border-radius: 16px;
+				box-shadow: var(--shadow-lg);
+			}
+			
+			.prose {
+				max-width: 720px;
+				margin: 0 auto;
+				padding: var(--space-xl) var(--space-lg);
+				opacity: 0;
+				animation: fadeIn 0.6s ease 0.5s forwards;
+			}
+			
+			.prose :global(h2) {
+				font-size: 1.75rem;
+				margin-top: var(--space-xl);
+				margin-bottom: var(--space-md);
+				color: var(--text-primary);
+			}
+			
+			.prose :global(h3) {
+				font-size: 1.375rem;
+				margin-top: var(--space-lg);
+				margin-bottom: var(--space-md);
+			}
+			
+			.prose :global(p) {
+				margin-bottom: var(--space-lg);
+				line-height: 1.8;
+			}
+			
+			.prose :global(a) {
+				color: var(--burnt-orange);
+				text-decoration: underline;
+				text-decoration-color: var(--terracotta);
+				text-underline-offset: 3px;
+				text-decoration-thickness: 2px;
+				transition: text-decoration-color var(--transition-fast);
+			}
+			
+			.prose :global(a:hover) {
+				text-decoration-color: var(--burnt-orange);
+			}
+			
+			.prose :global(ul),
+			.prose :global(ol) {
+				margin-bottom: var(--space-lg);
+				padding-left: var(--space-lg);
+			}
+			
+			.prose :global(li) {
+				margin-bottom: var(--space-sm);
+				line-height: 1.7;
+			}
+			
+			.prose :global(blockquote) {
+				border-left: 4px solid var(--burnt-orange);
+				padding-left: var(--space-lg);
+				margin: var(--space-lg) 0;
+				font-family: var(--font-display);
+				font-size: 1.25rem;
+				font-style: italic;
+				color: var(--text-secondary);
+			}
+			
+			.prose :global(blockquote p:last-child) {
+				margin-bottom: 0;
+			}
+			
+			.prose :global(img) {
+				border-radius: 12px;
+				margin: var(--space-lg) 0;
+			}
+			
+			.prose :global(pre) {
+				margin: var(--space-lg) 0;
+				border-radius: 12px;
+			}
+			
+			.prose :global(hr) {
+				margin: var(--space-xl) 0;
+			}
+			
+			/* Back link */
+			.back-link {
+				max-width: 720px;
+				margin: 0 auto;
+				padding: 0 var(--space-lg) var(--space-xl);
+			}
+			
+			.back-link a {
+				display: inline-flex;
+				align-items: center;
+				gap: var(--space-sm);
+				font-size: 0.95rem;
+				font-weight: 500;
+				color: var(--text-secondary);
+				transition: color var(--transition-fast);
+			}
+			
+			.back-link a:hover {
+				color: var(--burnt-orange);
+			}
+			
+			.back-link svg {
+				transition: transform var(--transition-fast);
+			}
+			
+			.back-link a:hover svg {
+				transform: translateX(-3px);
+			}
+			
+			@media (max-width: 768px) {
+				.hero-section {
+					padding: var(--space-xl) var(--space-md);
+				}
+				
+				.hero-image {
+					padding: 0 var(--space-md);
+				}
+				
+				.prose {
+					padding: var(--space-lg) var(--space-md);
+				}
+				
+				.back-link {
+					padding: 0 var(--space-md) var(--space-lg);
+				}
 			}
 		</style>
 	</head>
@@ -59,25 +224,38 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		<Header />
 		<main>
 			<article>
-				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
+				<div class="hero-section">
+					<div class="article-meta">
+						<span class="date">
 							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
-						</div>
-						<h1>{title}</h1>
-						<hr />
+						</span>
+						{updatedDate && (
+							<span class="updated">
+								(Updated: <FormattedDate date={updatedDate} />)
+							</span>
+						)}
 					</div>
+					<h1 class="article-title">{title}</h1>
+					{description && <p class="article-description">{description}</p>}
+				</div>
+				
+				{heroImage && (
+					<div class="hero-image">
+						<Image width={1000} height={500} src={heroImage} alt="" />
+					</div>
+				)}
+				
+				<div class="prose">
 					<slot />
+				</div>
+				
+				<div class="back-link">
+					<a href="/blog">
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+							<path d="M19 12H5M12 19l-7-7 7-7"/>
+						</svg>
+						Back to all posts
+					</a>
 				</div>
 			</article>
 		</main>

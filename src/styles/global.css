@@ -1,141 +1,241 @@
 /*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
- */
+  Aly Cabral Y'all - Austin-inspired design
+  Warm Texas sunset palette meets modern tech aesthetic
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
 
 :root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
-	--box-shadow:
-		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px
-		rgba(var(--gray), 33%);
+	/* Texas Sunset Palette */
+	--burnt-orange: #bf5700;
+	--terracotta: #c97b59;
+	--warm-cream: #faf6f1;
+	--sand: #e8dfd5;
+	--slate: #2d3436;
+	--slate-light: #636e72;
+	--golden: #f4a261;
+	--deep-rust: #9a4b2c;
+	
+	/* Semantic colors */
+	--accent: var(--burnt-orange);
+	--accent-hover: var(--deep-rust);
+	--text-primary: var(--slate);
+	--text-secondary: var(--slate-light);
+	--bg-primary: var(--warm-cream);
+	--bg-secondary: var(--sand);
+	
+	/* Typography */
+	--font-display: 'Playfair Display', Georgia, serif;
+	--font-body: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+	
+	/* Spacing */
+	--space-xs: 0.25rem;
+	--space-sm: 0.5rem;
+	--space-md: 1rem;
+	--space-lg: 2rem;
+	--space-xl: 4rem;
+	--space-2xl: 8rem;
+	
+	/* Shadows */
+	--shadow-sm: 0 1px 2px rgba(45, 52, 54, 0.05);
+	--shadow-md: 0 4px 12px rgba(45, 52, 54, 0.08);
+	--shadow-lg: 0 12px 32px rgba(45, 52, 54, 0.12);
+	
+	/* Transitions */
+	--transition-fast: 150ms ease;
+	--transition-base: 250ms ease;
+	--transition-slow: 400ms ease;
 }
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-regular.woff") format("woff");
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
+
+/* Base reset */
+*, *::before, *::after {
+	box-sizing: border-box;
 }
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-bold.woff") format("woff");
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
+
+html {
+	scroll-behavior: smooth;
 }
+
 body {
-	font-family: "Atkinson", sans-serif;
+	font-family: var(--font-body);
 	margin: 0;
 	padding: 0;
-	text-align: left;
-	background: linear-gradient(var(--gray-gradient)) no-repeat;
-	background-size: 100% 600px;
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-	color: rgb(var(--gray-dark));
-	font-size: 20px;
+	background: var(--bg-primary);
+	color: var(--text-primary);
+	font-size: 18px;
 	line-height: 1.7;
+	font-weight: 400;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
+
+/* Subtle grain texture overlay */
+body::before {
+	content: '';
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	opacity: 0.03;
+	background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+	z-index: 1000;
+}
+
 main {
-	width: 720px;
-	max-width: calc(100% - 2em);
-	margin: auto;
-	padding: 3em 1em;
+	width: 100%;
+	max-width: 800px;
+	margin: 0 auto;
+	padding: var(--space-xl) var(--space-lg);
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+	font-family: var(--font-display);
+	color: var(--text-primary);
 	line-height: 1.2;
+	margin: 0 0 var(--space-md) 0;
+	font-weight: 600;
 }
+
 h1 {
-	font-size: 3.052em;
-}
-h2 {
-	font-size: 2.441em;
-}
-h3 {
-	font-size: 1.953em;
-}
-h4 {
-	font-size: 1.563em;
-}
-h5 {
-	font-size: 1.25em;
-}
-strong,
-b {
+	font-size: clamp(2.5rem, 5vw, 4rem);
 	font-weight: 700;
+	letter-spacing: -0.02em;
 }
+
+h2 {
+	font-size: clamp(2rem, 4vw, 2.75rem);
+	letter-spacing: -0.01em;
+}
+
+h3 {
+	font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+h4 {
+	font-size: 1.375rem;
+}
+
+h5 {
+	font-size: 1.125rem;
+}
+
+p {
+	margin: 0 0 var(--space-md) 0;
+}
+
+.prose p {
+	margin-bottom: var(--space-lg);
+}
+
+strong, b {
+	font-weight: 600;
+}
+
+/* Links */
 a {
 	color: var(--accent);
+	text-decoration: none;
+	transition: color var(--transition-fast);
 }
+
 a:hover {
-	color: var(--accent);
+	color: var(--accent-hover);
 }
-p {
-	margin-bottom: 1em;
+
+/* Prose links get underlines */
+.prose a {
+	text-decoration: underline;
+	text-decoration-color: var(--terracotta);
+	text-underline-offset: 3px;
+	text-decoration-thickness: 2px;
 }
-.prose p {
-	margin-bottom: 2em;
+
+.prose a:hover {
+	text-decoration-color: var(--accent);
 }
-textarea {
-	width: 100%;
+
+/* Form elements */
+textarea, input {
+	font-family: var(--font-body);
 	font-size: 16px;
 }
-input {
-	font-size: 16px;
-}
+
+/* Tables */
 table {
 	width: 100%;
+	border-collapse: collapse;
 }
+
+/* Images */
 img {
 	max-width: 100%;
 	height: auto;
 	border-radius: 8px;
 }
+
+/* Code */
 code {
-	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
-	border-radius: 2px;
-}
-pre {
-	padding: 1.5em;
-	border-radius: 8px;
-}
-pre > code {
-	all: unset;
-}
-blockquote {
-	border-left: 4px solid var(--accent);
-	padding: 0 0 0 20px;
-	margin: 0;
-	font-size: 1.333em;
-}
-hr {
-	border: none;
-	border-top: 1px solid rgb(var(--gray-light));
-}
-@media (max-width: 720px) {
-	body {
-		font-size: 18px;
-	}
-	main {
-		padding: 1em;
-	}
+	font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+	font-size: 0.9em;
+	padding: 0.2em 0.4em;
+	background-color: var(--sand);
+	border-radius: 4px;
 }
 
+pre {
+	padding: var(--space-lg);
+	border-radius: 12px;
+	overflow-x: auto;
+	background: var(--slate) !important;
+}
+
+pre > code {
+	all: unset;
+	color: var(--warm-cream);
+}
+
+/* Blockquotes */
+blockquote {
+	border-left: 4px solid var(--burnt-orange);
+	padding: var(--space-sm) 0 var(--space-sm) var(--space-lg);
+	margin: var(--space-lg) 0;
+	font-family: var(--font-display);
+	font-size: 1.25rem;
+	font-style: italic;
+	color: var(--text-secondary);
+}
+
+blockquote p:last-child {
+	margin-bottom: 0;
+}
+
+/* Horizontal rules */
+hr {
+	border: none;
+	height: 2px;
+	background: linear-gradient(90deg, transparent, var(--terracotta) 20%, var(--terracotta) 80%, transparent);
+	margin: var(--space-xl) 0;
+}
+
+/* Lists */
+ul, ol {
+	padding-left: var(--space-lg);
+}
+
+li {
+	margin-bottom: var(--space-sm);
+}
+
+/* Selection */
+::selection {
+	background: var(--terracotta);
+	color: var(--warm-cream);
+}
+
+/* Screen reader only */
 .sr-only {
 	border: 0;
 	padding: 0;
@@ -144,12 +244,57 @@ hr {
 	height: 1px;
 	width: 1px;
 	overflow: hidden;
-	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
 	clip: rect(1px 1px 1px 1px);
-	/* maybe deprecated but we need to support legacy browsers */
 	clip: rect(1px, 1px, 1px, 1px);
-	/* modern browsers, clip-path works inwards from each corner */
 	clip-path: inset(50%);
-	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+	body {
+		font-size: 16px;
+	}
+	
+	main {
+		padding: var(--space-lg) var(--space-md);
+	}
+}
+
+/* Animations */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes slideIn {
+	from {
+		opacity: 0;
+		transform: translateX(-20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+.animate-fade-in {
+	animation: fadeIn 0.6s ease forwards;
+}
+
+.animate-slide-in {
+	animation: slideIn 0.6s ease forwards;
+}
+
+/* Staggered animation delays */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
