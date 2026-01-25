@@ -91,14 +91,16 @@ Create `src/content/blog/<slug>.md`:
 
 ```markdown
 ---
-title: '<Title>'
-description: '<Description>'
-pubDate: '<Current Date: Mon DD YYYY format>'
-heroImage: '../../assets/<slug>-header.webp'
+title: "<Title>"
+description: "<Description>"
+pubDate: "<Current Date: Mon DD YYYY format>"
+heroImage: "../../assets/<slug>-header.webp"
 ---
 
 <Well-structured content with headers, code examples, lists>
 ```
+
+**IMPORTANT:** Always use double quotes in YAML front matter to avoid escaping issues with apostrophes and special characters in titles/descriptions.
 
 **Content guidelines:**
 - Match the tone and style of existing posts in `src/content/blog/`
@@ -185,13 +187,15 @@ Live at: /blog/<slug>
 
 ## Frontmatter Schema
 
+**Always use double quotes for all string values** to avoid YAML parsing errors with apostrophes and special characters.
+
 Required:
-- `title` (string)
-- `description` (string)
-- `pubDate` (string) - Format: `Jan 20 2026`
+- `title` (string) - Use double quotes: `title: "The Developer's Guide"`
+- `description` (string) - Use double quotes: `description: "It's a great post"`
+- `pubDate` (string) - Format: `"Jan 20 2026"`
 
 Optional:
-- `heroImage` (string) - `../../assets/<filename>.webp`
+- `heroImage` (string) - `"../../assets/<filename>.webp"`
 - `updatedDate` (string)
 
 ## Git Commands Reference
