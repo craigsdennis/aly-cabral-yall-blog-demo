@@ -15,8 +15,6 @@ This skill drafts and publishes blog posts for an Astro-based blog. It operates 
 
 Check `.dev.vars.example` for configuration:
 - `REPLICATE_API_TOKEN` - Enables AI-generated hero images via Replicate
-- `BLOG_PREVIEW_URL_PATTERN` - Preview URL pattern with `{branch}` placeholder
-- `BLOG_PRODUCTION_URL` - Production site URL
 
 ## Drafting a New Blog Post
 
@@ -125,7 +123,7 @@ After pushing, tell the user:
 ```
 Draft pushed to branch `blog/<slug>`
 
-Preview: https://<BLOG_PREVIEW_URL_PATTERN with {branch} replaced>/blog/<slug>
+Preview available soon
 
 (Preview deployment takes 1-2 minutes)
 
@@ -165,7 +163,7 @@ git branch -d blog/<slug>
 ```
 Published! Merged to main and pushed.
 
-Live at: <BLOG_PRODUCTION_URL>/blog/<slug>
+Live at: /blog/<slug>
 
 (Deployment takes 1-2 minutes)
 ```
