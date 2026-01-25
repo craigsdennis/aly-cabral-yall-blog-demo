@@ -1,63 +1,257 @@
 ---
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import Layout from '../layouts/BlogPost.astro';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
 ---
 
-<Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
-	heroImage={AboutHeroImage}
->
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-		viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-		adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-		et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-		vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-		sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
-	</p>
-
-	<p>
-		Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-		tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-		blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-		porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-		massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-		Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-		bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-		massa massa ultricies mi.
-	</p>
-
-	<p>
-		Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-		suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-		nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-		turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-		dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-		semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-		vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-		facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-		vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-		urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
-	</p>
-
-	<p>
-		Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-		viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-		scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-		gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-		pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-		blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-		cursus metus aliquam eleifend mi.
-	</p>
-
-	<p>
-		Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-		nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-		tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-		ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-		proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
-	</p>
-</Layout>
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead 
+			title={`About | ${SITE_TITLE}`} 
+			description="Learn more about Aly Cabral - Developer GTM Lead at Cloudflare, Austin native, and passionate advocate for developer communities." 
+		/>
+		<style>
+			.about-hero {
+				padding: var(--space-2xl) var(--space-lg) var(--space-xl);
+				text-align: center;
+				position: relative;
+			}
+			
+			.about-hero::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 100%;
+				height: 100%;
+				background: radial-gradient(ellipse at top center, rgba(191, 87, 0, 0.06) 0%, transparent 60%);
+				pointer-events: none;
+			}
+			
+			.about-hero h1 {
+				font-size: clamp(2.5rem, 6vw, 4rem);
+				margin-bottom: var(--space-md);
+				opacity: 0;
+				animation: fadeIn 0.6s ease 0.2s forwards;
+			}
+			
+			.about-hero .tagline {
+				font-size: 1.25rem;
+				color: var(--text-secondary);
+				max-width: 600px;
+				margin: 0 auto;
+				opacity: 0;
+				animation: fadeIn 0.6s ease 0.4s forwards;
+			}
+			
+			.about-content {
+				max-width: 720px;
+				margin: 0 auto;
+				padding: 0 var(--space-lg) var(--space-2xl);
+			}
+			
+			.about-section {
+				margin-bottom: var(--space-xl);
+				opacity: 0;
+				animation: fadeIn 0.6s ease 0.6s forwards;
+			}
+			
+			.about-section h2 {
+				font-size: 1.75rem;
+				color: var(--burnt-orange);
+				margin-bottom: var(--space-md);
+				position: relative;
+				display: inline-block;
+			}
+			
+			.about-section h2::after {
+				content: '';
+				position: absolute;
+				bottom: -4px;
+				left: 0;
+				width: 40px;
+				height: 3px;
+				background: var(--terracotta);
+			}
+			
+			.about-section p {
+				font-size: 1.125rem;
+				line-height: 1.8;
+				color: var(--text-primary);
+			}
+			
+			.about-section ul {
+				list-style: none;
+				padding: 0;
+				margin: var(--space-md) 0;
+			}
+			
+			.about-section li {
+				position: relative;
+				padding-left: var(--space-lg);
+				margin-bottom: var(--space-sm);
+				font-size: 1.1rem;
+			}
+			
+			.about-section li::before {
+				content: '';
+				position: absolute;
+				left: 0;
+				top: 0.6em;
+				width: 8px;
+				height: 8px;
+				background: var(--burnt-orange);
+				border-radius: 50%;
+			}
+			
+			.highlight-box {
+				background: var(--bg-secondary);
+				border-left: 4px solid var(--burnt-orange);
+				padding: var(--space-lg);
+				margin: var(--space-lg) 0;
+				border-radius: 0 8px 8px 0;
+			}
+			
+			.highlight-box p {
+				margin: 0;
+				font-family: var(--font-display);
+				font-size: 1.25rem;
+				font-style: italic;
+				color: var(--text-primary);
+			}
+			
+			.connect-section {
+				background: var(--bg-secondary);
+				padding: var(--space-xl) var(--space-lg);
+				text-align: center;
+			}
+			
+			.connect-section h2 {
+				margin-bottom: var(--space-md);
+			}
+			
+			.connect-section p {
+				color: var(--text-secondary);
+				margin-bottom: var(--space-lg);
+			}
+			
+			.connect-links {
+				display: flex;
+				justify-content: center;
+				gap: var(--space-md);
+				flex-wrap: wrap;
+			}
+			
+			.connect-link {
+				display: inline-flex;
+				align-items: center;
+				gap: var(--space-sm);
+				padding: 0.75rem 1.5rem;
+				background: var(--bg-primary);
+				border-radius: 8px;
+				font-weight: 500;
+				transition: all var(--transition-base);
+			}
+			
+			.connect-link:hover {
+				background: var(--burnt-orange);
+				color: var(--warm-cream);
+				transform: translateY(-2px);
+				box-shadow: var(--shadow-md);
+			}
+			
+			@media (max-width: 768px) {
+				.about-hero {
+					padding: var(--space-xl) var(--space-md);
+				}
+				
+				.about-content {
+					padding: 0 var(--space-md) var(--space-xl);
+				}
+				
+				.connect-section {
+					padding: var(--space-lg) var(--space-md);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="about-hero">
+				<h1>About Me</h1>
+				<p class="tagline">Developer advocate, community builder, and proud Texan</p>
+			</section>
+			
+			<div class="about-content">
+				<div class="about-section">
+					<h2>Hey y'all!</h2>
+					<p>
+						I'm Aly Cabral, and I lead Developer Go-To-Market at Cloudflare. 
+						I'm passionate about helping developers build amazing things and 
+						creating communities where everyone feels welcome to learn and grow.
+					</p>
+					<p>
+						Born and raised in Austin, Texas, I bring that warm Southern hospitality 
+						to everything I do in tech. Whether I'm speaking at conferences, writing 
+						about developer experience, or strategizing on how to reach developers 
+						authentically, I believe in keeping it real and keeping it human.
+					</p>
+				</div>
+				
+				<div class="about-section">
+					<h2>What I Do</h2>
+					<p>At Cloudflare, I focus on:</p>
+					<ul>
+						<li>Developer go-to-market strategy and execution</li>
+						<li>Building and nurturing developer communities</li>
+						<li>Creating content that actually helps developers</li>
+						<li>Speaking at conferences and events worldwide</li>
+						<li>Bridging the gap between product and developer needs</li>
+					</ul>
+				</div>
+				
+				<div class="highlight-box">
+					<p>
+						"The best developer relations is built on genuine connection, 
+						not just clever marketing. When you truly care about helping 
+						developers succeed, everything else follows."
+					</p>
+				</div>
+				
+				<div class="about-section">
+					<h2>Beyond Work</h2>
+					<p>
+						When I'm not thinking about developer experience, you'll find me 
+						exploring Austin's incredible food scene, enjoying live music on 
+						6th Street, or finding the best tacos in town. Texas isn't just 
+						where I'm from - it's who I am.
+					</p>
+				</div>
+			</div>
+			
+			<section class="connect-section">
+				<h2>Let's Connect</h2>
+				<p>Always happy to chat about DevRel, GTM strategy, or trade Austin restaurant recommendations.</p>
+				<div class="connect-links">
+					<a href="https://linkedin.com/in/alycabral" target="_blank" rel="noopener" class="connect-link">
+						<svg viewBox="0 0 24 24" width="20" height="20">
+							<path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+						</svg>
+						LinkedIn
+					</a>
+					<a href="https://twitter.com/alycabral" target="_blank" rel="noopener" class="connect-link">
+						<svg viewBox="0 0 24 24" width="20" height="20">
+							<path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+						</svg>
+						Twitter/X
+					</a>
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
