@@ -2,7 +2,6 @@
 title: "Writing at 35,000 Feet: How AI Unlocks Productivity in the Skies"
 description: "Discover how AI writing assistants transform airplane time into your most productive work hours—no internet connection needed."
 pubDate: "Jan 26 2026"
-heroImage: "../../assets/airplane-content-ai-header.webp"
 ---
 
 There's a particular kind of productivity challenge that frequent travelers understand: you're locked in a metal tube at 35,000 feet for the next five hours, with spotty WiFi at best and a pressing need to ship something meaningful. The airplane used to mean lost productivity. AI is changing that entirely.
