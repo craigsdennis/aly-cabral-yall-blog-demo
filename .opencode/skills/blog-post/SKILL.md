@@ -13,7 +13,8 @@ This skill drafts and publishes blog posts for an Astro-based blog. It operates 
 
 ## Environment Variables
 
-Check `.dev.vars.example` for configuration:
+Check for environment variables are set
+
 - `REPLICATE_API_TOKEN` - Enables AI-generated hero images via Replicate
 
 ## Drafting a New Blog Post
@@ -149,7 +150,7 @@ git branch -r | grep 'origin/blog/'
 ```bash
 git checkout main
 git pull origin main
-git merge origin/blog/<slug> --no-edit
+git merge origin/blog/<slug> -m "Publish: <Title>"
 git push origin main
 ```
 
@@ -213,7 +214,7 @@ git push -u origin blog/<slug>
 **Publish:**
 ```bash
 git checkout main && git pull origin main
-git merge origin/blog/<slug> --no-edit
+git merge origin/blog/<slug> -m "Publish: <Title>"
 git push origin main
 git push origin --delete blog/<slug>
 git branch -d blog/<slug>
