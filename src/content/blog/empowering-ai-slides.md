@@ -3,7 +3,7 @@ title: "The Empowerment of AI: Why Generating Slides with AI Changes Everything"
 description: "Discover how AI-powered presentation generation is transforming the way professionals communicate, democratizing design skills, and reclaiming time for what truly matters."
 pubDate: "Jan 27 2026"
 heroImage: "../../assets/empowering-ai-slides-header.webp"
-draft: true
+draft: false
 ---
 
 There was a time—not so long ago—when creating a compelling presentation meant choosing between two paths: spend hours wrestling with design tools, or hire a designer and watch your budget disappear. The middle ground seemed impossible.
