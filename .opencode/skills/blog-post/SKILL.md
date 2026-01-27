@@ -96,6 +96,7 @@ title: "<Title>"
 description: "<Description>"
 pubDate: "<Current Date: Mon DD YYYY format>"
 heroImage: "../../assets/<slug>-header.webp"
+draft: true
 ---
 
 <Well-structured content with headers, code examples, lists>
@@ -145,23 +146,34 @@ git branch --show-current
 git branch -r | grep 'origin/blog/'
 ```
 
-### 2. Merge and Push
+### 2. Merge the Branch
 
 ```bash
 git checkout main
 git pull origin main
-git merge origin/blog/<slug> -m "Publish: <Title>"
+git merge origin/blog/<slug>
+```
+
+### 3. Update Draft Status
+
+Edit `src/content/blog/<slug>.md` and change `draft: true` to `draft: false` in the frontmatter. This marks the post as published.
+
+### 4. Commit and Push
+
+```bash
+git add src/content/blog/<slug>.md
+git commit -m "Publish: <Title>"
 git push origin main
 ```
 
-### 3. Clean Up
+### 5. Clean Up
 
 ```bash
 git push origin --delete blog/<slug>
 git branch -d blog/<slug>
 ```
 
-### 4. Confirm
+### 6. Confirm
 
 ```
 Published! Merged to main and pushed.
@@ -198,6 +210,7 @@ Required:
 Optional:
 - `heroImage` (string) - `"../../assets/<filename>.webp"`
 - `updatedDate` (string)
+- `draft` (boolean) - `true` for drafts, `false` (or omitted) for published posts
 
 ## Git Commands Reference
 
@@ -214,7 +227,10 @@ git push -u origin blog/<slug>
 **Publish:**
 ```bash
 git checkout main && git pull origin main
-git merge origin/blog/<slug> -m "Publish: <Title>"
+git merge origin/blog/<slug>
+# Edit src/content/blog/<slug>.md: change draft: true -> draft: false
+git add src/content/blog/<slug>.md
+git commit -m "Publish: <Title>"
 git push origin main
 git push origin --delete blog/<slug>
 git branch -d blog/<slug>
