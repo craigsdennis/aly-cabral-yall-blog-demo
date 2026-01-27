@@ -3,7 +3,7 @@ title: "Breaking Bread in Austin: Why Great Food Is Your Secret Team Superpower"
 description: "Discover how Austin's legendary food scene creates the perfect backdrop for authentic team bonding and building stronger workplace relationships."
 pubDate: "Jan 27 2026"
 heroImage: "../../assets/food-bonding-austin-header.webp"
-draft: true
+draft: false
 ---
 
 There's something magical that happens when a team gathers around a table laden with perfectly smoked brisket, vibrant tacos, and shared laughter. It's not just about the food—though Austin's culinary scene is undeniably world-class. It's about what happens when people break bread together.
