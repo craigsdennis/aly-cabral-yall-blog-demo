@@ -3,7 +3,7 @@ title: "The Emergence of AI Agents: How Autonomous Intelligence Is Reshaping App
 description: "AI agents are moving beyond chat interfaces into autonomous decision-makers. Discover how this shift fundamentally changes how we design, build, and deploy applications."
 pubDate: "Jan 27 2026"
 heroImage: "../../assets/ai-agents-emergence-header.webp"
-draft: true
+draft: false
 ---
 
 For the past year, AI has been the domain of chatbots and question-answering systems. You ask, it answers. But something has shifted. AI systems are beginning to move beyond responding to prompts—they're starting to make decisions, take action, and operate autonomously toward goals.
