@@ -3,7 +3,7 @@ title: "The Hidden Power of Welcoming Startups to Your Company: Why Innovation T
 description: "Discover why embracing startup culture within established companies isn't just trendy—it's a strategic imperative that unlocks innovation, talent, and competitive advantage."
 pubDate: "Feb 11 2026"
 heroImage: "../../assets/welcoming-startups-header.webp"
-draft: true
+draft: false
 ---
 
 There's a paradox at the heart of most established organizations: the larger and more successful they become, the slower they move. The more resources they command, the more constrained their decision-making becomes. The more talent they attract, the more they struggle to create space for that talent to do its best work.
